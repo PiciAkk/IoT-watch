@@ -24,66 +24,32 @@ def toggleLights():
 def index():
     if request.method == 'POST':
         requestForm = request.form.to_dict()
-        try:
-            requestForm['kodioff']
+        command = list(requestForm.keys())[0]
+        if command == "kodioff":
             callKodiAPI("System.Shutdown", {})
-        except:
-            pass
-        try:
-            requestForm['togglelights']
+        elif command == "togglelights":
             toggleLights()
-        except:
-            pass
-        try:
-            requestForm['kodimute']
+        elif command == "kodimute":
             callKodiAPI("Application.SetMute", {"mute": "toggle"})
-        except:
-            pass
-        try:
-            requestForm["voldown"]
+        elif command == "voldown":
             callKodiAPI("Application.SetVolume", {"volume": "decrement"})
-        except:
-            pass
-        try:
-            requestForm["uparrow"]
+        elif command == "uparrow":
             callKodiAPI("Input.Up", {})
-        except:
-            pass
-        try:
-            requestForm["volup"]
+        elif command == "volup":
             callKodiAPI("Application.SetVolume", {"volume": "increment"})
-        except:
-            pass
-        try:
-            requestForm["leftarrow"]
+        elif command == "leftarrow":
             callKodiAPI("Input.Left", {})
-        except:
-            pass
-        try:
-            requestForm["selectelement"]
+        elif command == "selectelement":
             callKodiAPI("Input.Select", {})
-        except:
-            pass
-        try:
-            requestForm["rightarrow"]
+        elif command == "rightarrow":
             callKodiAPI("Input.Right", {})
-        except:
-            pass
-        try:
-            requestForm["backbtn"]
+        elif command == "backbtn":
             callKodiAPI("Input.Back", {})
-        except:
-            pass
-        try:
-            requestForm["downarrow"]
+        elif command == "downarrow":
             callKodiAPI("Input.Down", {})
-        except:
-            pass
-        try:
-            requestForm["homebtn"]
+        elif command == "homebtn":
             callKodiAPI("Input.Home", {})
-        except:
-            pass
+
     return render_template('index.html')
 
 app.run(host="0.0.0.0")
