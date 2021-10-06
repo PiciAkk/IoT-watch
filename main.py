@@ -59,7 +59,7 @@ def index():
         elif command == "playpausebtn":
             callKodiAPI("Player.PlayPause", {"playerid": 1})
         elif command == "infobtn":
-            callKodiAPI("Input.Info", {})
+            callKodiAPI("Input.ShowOSD", {})
     return render_template('index.html')
 
 app.run(host="0.0.0.0")
