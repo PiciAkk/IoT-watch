@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
 import requests
 import json
+import broadlink
+
+devices = broadlink.discover(timeout=5)
+devices[0].auth()
 
 url = "http://192.168.0.89:8080/jsonrpc"
 headers = {
@@ -19,7 +23,10 @@ def callKodiAPI(method, params):
     response = requests.request("POST", url, headers=headers, data=payload)
     print(response.text)
 def toggleLights():
-    print("Toggling lights...")
+    if devices[0].check_power() == True:
+        devices[0].set_power(False)
+    else:
+        devices[0].set_power(True)
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
