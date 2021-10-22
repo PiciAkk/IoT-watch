@@ -6,8 +6,8 @@ payload = json.dumps({
 	"jsonrpc": "2.0",
 	"method": "Player.SetSubtitle",
 	"params": {
-		"playerid": 1
-		"subtitle": 1 # or "off", or "on", or any other integer 
+		"playerid": 1,
+		"subtitle": 1 # or "off", or "on", or any other integer
 	}
 })
 ```
@@ -36,6 +36,6 @@ payload = json.dumps({
 	"params": {
 		"playerid": 1,
 		"properties": ["subtitles"]
-	} 
+	}
 }})
 ```
